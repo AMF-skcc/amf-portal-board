@@ -1,6 +1,8 @@
 server:
   port: 8080
-
+  servlet:
+    encoding:
+      force-response: true
 spring:
   application:
     name: amf-portal-board
