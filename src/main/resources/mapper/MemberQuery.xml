@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.factory.demo.member.repository.MybatisMapper">
+
+  <select id="findMemberById" parameterType="Long" resultType="com.factory.demo.member.model.Member">
+    select
+      m.name,
+      m.email
+    from member m
+    where m.id = #{id}
+  </select>
+
+</mapper>

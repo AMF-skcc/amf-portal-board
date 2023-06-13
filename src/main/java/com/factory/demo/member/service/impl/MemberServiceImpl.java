@@ -6,9 +6,13 @@ import com.factory.demo.member.dto.LoginResultDto;
 import com.factory.demo.member.dto.LoginSuccessResultDto;
 import com.factory.demo.member.model.Member;
 import com.factory.demo.member.repository.MemberRepository;
+import com.factory.demo.member.repository.MybatisMapper;
 import com.factory.demo.member.service.MemberService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
+    private final MybatisMapper mybatisRepository;
 
     @Override
     @Transactional
@@ -39,5 +44,10 @@ public class MemberServiceImpl implements MemberService {
             return new LoginResultDto(false); // 요구사항에 따라 다른 방법으로 구현할 수 있음
         }
         return new LoginSuccessResultDto(savedMember.getId(), savedMember.getName(), savedMember.getEmail());
+    }
+
+    @Override
+    public Member findMemberById(Long id) {
+        return mybatisRepository.findMemberById(id);
     }
 }

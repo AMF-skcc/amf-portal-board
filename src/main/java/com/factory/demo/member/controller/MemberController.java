@@ -1,8 +1,14 @@
 package com.factory.demo.member.controller;
 
 import com.factory.demo.member.dto.MemberCreateRequestDto;
+import com.factory.demo.member.model.Member;
 import com.factory.demo.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +24,11 @@ public class MemberController {
     @PostMapping
     public Long save(@RequestBody MemberCreateRequestDto requestDto) {
         return this.memberService.save(requestDto);
+    }
+
+    @GetMapping("/{id}")
+    public Member findMemberById(@PathVariable Long id) {
+        return this.memberService.findMemberById(id);
     }
 
 }
